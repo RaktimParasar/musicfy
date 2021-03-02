@@ -32,11 +32,12 @@ export const playlists = async () => {
         Authorization: "Bearer " + window.localStorage.getItem("access_token"),
       },
     });
+    console.log(res.data);
     const data = await res.data.items.slice(0, 5);
     const fivePlaylists = data.map((el) => ({
       playlistsImg: el.images[0].url,
-      playlistName: el.name,
-      playlistTotal: el.tracks.total,
+      playlistsName: el.name,
+      playlistsTotal: el.tracks.total,
     }));
     return fivePlaylists;
   } catch (err) {}

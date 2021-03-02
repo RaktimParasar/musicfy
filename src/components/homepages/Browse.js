@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MusicPlayer from "../homepages/MusicPlayer";
 import i1 from "../assets/i1.jpg";
 import i2 from "../assets/i2.jpg";
 
-import { search } from "../utils/SpotifyAPI";
+import { search, playlists } from "../utils/SpotifyAPI";
 
 const Browse = () => {
   const [text, setText] = useState("");
   const [dropdown, setDropdown] = useState([]);
   const [musicData, setMusicData] = useState([]);
   const [isDown, setIsDown] = useState(false);
+  const [playlistsData, setPlaylistsData] = useState([]);
+
+  useEffect(() => {
+    const playData = async () => {
+      setPlaylistsData(await playlists());
+    };
+    playData();
+  }, []);
+  console.log(playlistsData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,34 +71,18 @@ const Browse = () => {
       <section className="player__reco">
         <div className="top__container">
           <div className="browse__header">
-            <h1>Top Recommendation</h1>
-            <p className="useremail">25 albums</p>
+            <h1>Your Top Playlist</h1>
           </div>
           <div className="reco--grid">
-            <div className="responsive">
-              <div className="gallery">
-                <img src={i1} alt="i1" />
-                <div className="desc">Song name</div>
+            {playlistsData.map((item) => (
+              <div className="responsive">
+                <div className="gallery">
+                  <img src={item.playlistsImg} alt="i1" />
+                  <div className="desc">{item.playlistsName}</div>
+                  <div className="desc">{item.playlistsTotal}</div>
+                </div>
               </div>
-            </div>
-            <div className="responsive">
-              <div className="gallery">
-                <img src={i2} alt="i2" />
-                <div className="desc">Song name</div>
-              </div>
-            </div>
-            <div className="responsive">
-              <div className="gallery">
-                <img src={i1} alt="i1" />
-                <div className="desc">Song name</div>
-              </div>
-            </div>
-            <div className="responsive">
-              <div className="gallery">
-                <img src={i2} alt="i2" />
-                <div className="desc">Song name</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <MusicPlayer musicData={musicData} />
