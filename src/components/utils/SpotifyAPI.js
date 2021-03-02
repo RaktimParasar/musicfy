@@ -18,9 +18,27 @@ export const search = async (query) => {
       musicUrl: el.preview_url,
       songID: el.id,
     }));
-    console.log(data);
     return topFive;
   } catch (error) {
     console.log(error);
   }
 };
+
+//get playlist data
+export const playlists = async () => {
+  try {
+    const res = await axios.get(`${url}/playlists`, {
+      headers: {
+        Authorization: "Bearer " + window.localStorage.getItem("access_token"),
+      },
+    });
+    const data = await res.data.items.slice(0, 5);
+    const fivePlaylists = data.map((el) => ({
+      playlistsImg: el.images[0].url,
+      playlistName: el.name,
+      playlistTotal: el.tracks.total,
+    }));
+    return fivePlaylists;
+  } catch (err) {}
+};
+playlists();

@@ -5,7 +5,6 @@ let phrase = window.location.href;
 var arr = phrase.match(/code=(.*)/);
 if (arr != null) {
   var bearer_token = arr[1];
-  console.log(bearer_token);
 }
 
 const headers = {

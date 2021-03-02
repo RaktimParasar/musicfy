@@ -1,15 +1,8 @@
 import { useState } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import MusicPlayer from "../homepages/MusicPlayer";
 import i1 from "../assets/i1.jpg";
 import i2 from "../assets/i2.jpg";
-import i3 from "../assets/i3.jpg";
-import i4 from "../assets/i4.jpg";
-import i5 from "../assets/i5.jpg";
-import i6 from "../assets/i6.jpg";
-import i7 from "../assets/i7.jpg";
-import i8 from "../assets/i8.jpg";
+
 import { search } from "../utils/SpotifyAPI";
 
 const Browse = () => {
