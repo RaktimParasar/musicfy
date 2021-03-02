@@ -1,0 +1,420 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;600&display=swap");
+:root {
+  --background: #f9fafb;
+  --indigo6: #4f46e5;
+  --gray8: #1f2937;
+  --primarytext: #111827;
+  --secondarytext: #4b5563;
+  --lighter-shadow: rgba(#4f46e5, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h3,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  background-color: var(--background);
+  font-family: "poppins", sans-serif;
+}
+
+/* login--section */
+.login__container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  text-align: center;
+  justify-content: center;
+}
+
+.login__header {
+  font-size: 4rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.3rem;
+  color: var(--indigo6);
+}
+
+.lead {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  color: var(--gray8);
+}
+
+.btn__container {
+  width: auto;
+  margin-top: 1rem;
+}
+
+.spotify__login {
+  background: #1ed760;
+  color: white;
+  padding: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.redirect__btn {
+  background: #1ed760;
+  color: white;
+  padding: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* home--section */
+.main__container {
+  display: grid;
+  height: 100vh;
+  padding: 20px;
+}
+
+.main__sections {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+/* sidebar section */
+.sidebar {
+  background-color: white;
+  width: min(30%, 300px);
+  height: 100%;
+  color: var(--primarytext);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.profile--details {
+  text-align: center;
+}
+
+.profile--img {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  /* box-shadow: 5px 10px 6px #ccc; */
+}
+
+.username {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.useremail {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondarytext);
+}
+
+.navbar {
+  margin-top: 70px;
+}
+
+.nav__list {
+  margin-bottom: 20px;
+}
+
+.navbar__link {
+  margin-left: 30px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.nav__logo {
+  font-size: 25px;
+}
+
+.nav__active {
+  color: var(--indigo6);
+}
+
+/* browse section */
+.browse {
+  width: 80%;
+  width: min(80%, 1000px);
+  padding: 20px;
+  position: relative;
+}
+
+.search__form {
+  display: flex;
+  max-width: 500px;
+}
+
+.search__box {
+  flex: 1 0 150px;
+  padding: 15px;
+  border-radius: 50px;
+  border: 1px solid var(--indigo6);
+  outline: none;
+  font-size: 1rem;
+}
+/* search dropdown */
+
+.search__dropdown {
+  background: white;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  position: absolute;
+}
+
+.recent {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dropdown__container {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--secondarytext);
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.cover {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.artists--name {
+  font-weight: 600;
+  padding-top: 20px;
+}
+
+.title--left {
+  margin-left: 20px;
+  font-weight: 600;
+  padding-top: 20px;
+}
+
+.search__btn {
+  flex: 0 1 50px;
+  margin-left: 30px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  background: var(--indigo6);
+  padding: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.browse__header {
+  margin-top: 50px;
+}
+
+.player__reco {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.top__container {
+  max-width: 500px;
+}
+
+.gallery {
+  border: 1px solid #ccc;
+}
+
+.gallery:hover {
+  border: 1px solid #777;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.desc {
+  padding: 5px;
+  text-align: center;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+.music__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 371px;
+  padding: 0 5px;
+  margin-top: 40px;
+  border-radius: 10px;
+  color: var(--primarytext);
+  font-weight: 100;
+  box-shadow: 0px 0px 70px 0px var(--lighter-shadow);
+  background: white;
+  overflow: hidden;
+}
+
+.current-song {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0px;
+  border-radius: 20px;
+  color: #071739;
+  background: #fff;
+}
+
+audio {
+  display: none;
+}
+
+.img-wrap {
+  position: relative;
+  margin: 0 auto;
+  width: 270px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px 0px rgba(39, 70, 132, 0.7);
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+}
+
+.song-name {
+  margin-top: 30px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--indigo6);
+}
+
+.song-autor {
+  color: var(--indigo6);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 240px;
+}
+
+#timeline {
+  position: relative;
+  margin: 0 auto;
+  width: 240px;
+  height: 5px;
+  background: #709fdc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#timeline #playhead {
+  position: relative;
+  z-index: 2;
+  width: 0;
+  height: 5px;
+  border-radius: 5px;
+  background: #071739;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+.controls button {
+  color: #071739;
+  border-radius: 50%;
+  margin: 15px;
+  font-size: 18px;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+  border: none;
+  background: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+.play {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #e2e2e2;
+}
+
+.play:hover {
+  left: 0;
+  box-shadow: 0px 0px 15px 0px rgba(39, 70, 132, 0.7);
+}
+
+.fa-play {
+  transform: translateX(2px);
+}
+
+.prev-next {
+  width: 35px;
+  height: 35px;
+}
+
+.prev-next:hover {
+  transform: scale(1.2);
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
