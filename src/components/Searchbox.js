@@ -29,16 +29,17 @@ const Searchbox = () => {
   };
   return (
     <>
-      <div>
+      <div className="search">
         <form className="search__form" onSubmit={handleSubmit}>
           <input
             className="search__box"
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            placeholder="search your favourite song"
             required
           />
-          <input type="submit" value="Submit" className="search__btn" />
+          <input type="submit" value="Search" className="search__btn" />
         </form>
 
         {isDown && text && (
@@ -51,8 +52,16 @@ const Searchbox = () => {
                   onClick={() => handleClick(item.songID)}
                 >
                   <img className="cover" src={item.songImg} alt="cover" />
-                  <p className="artists--name">{item.artistName}</p>
-                  <p className="title--left">{item.songName}</p>
+                  <p className="artists--name">
+                    {item.artistName.length > 12
+                      ? item.artistName.substring(0, 12) + "..."
+                      : item.artistName}
+                  </p>
+                  <p className="title--left">
+                    {item.songName.length > 20
+                      ? item.songName.substring(0, 20) + "..."
+                      : item.songName}
+                  </p>
                 </div>
               </>
             ))}
