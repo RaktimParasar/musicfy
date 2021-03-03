@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import MusicPlayer from "../homepages/MusicPlayer";
-import i1 from "../assets/i1.jpg";
-import i2 from "../assets/i2.jpg";
-
-import { search, playlists } from "../utils/SpotifyAPI";
+import MusicPlayer from "../MusicPlayer";
+import { search, playlists } from "../../utils/SpotifyAPI";
 
 const Browse = () => {
   const [text, setText] = useState("");
@@ -47,6 +44,7 @@ const Browse = () => {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          required
         />
         <input type="submit" value="Submit" className="search__btn" />
       </form>

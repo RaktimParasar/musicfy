@@ -5,9 +5,6 @@ const MusicPlayer = ({ musicData }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [musicList, setMusicList] = useState([]);
 
-  const fakeMusic =
-    "https://www.bensound.com/bensound-music/bensound-buddy.mp3";
-
   useEffect(() => {
     setMusicList(musicData);
   }, [musicData]);
@@ -19,35 +16,35 @@ const MusicPlayer = ({ musicData }) => {
       audioEl.current && audioEl.current.pause();
     }
   });
-
   return (
     <div className="music__card">
       <div className="current-song">
         {musicList.map((el) => (
           <div id={el.songID}>
-            <audio src={el.musicUrl ? el.musicUrl : fakeMusic} ref={audioEl}>
-              <source src={el.musicUrl} type="audio/ogg" />
-              Your browser does not support the audio element.
-            </audio>
+            <audio src={el.musicUrl} ref={audioEl}></audio>
             <div className="img-wrap">
               <img src={el.songImg} alt="cover" />
             </div>
             <span className="song-name">{el.songName}</span>
             <span className="song-autor">{el.artistName}</span>
             <div className="controls">
-              <button className="play current-btn">
-                {!isPlaying ? (
-                  <i
-                    className="fas fa-play"
-                    onClick={() => setIsPlaying(!isPlaying)}
-                  ></i>
-                ) : (
-                  <i
-                    class="fas fa-pause"
-                    onClick={() => setIsPlaying(!isPlaying)}
-                  ></i>
-                )}
-              </button>
+              {el.musicUrl === null ? (
+                <p>Music not avialable to play</p>
+              ) : (
+                <button className="play current-btn">
+                  {!isPlaying ? (
+                    <i
+                      className="fas fa-play"
+                      onClick={() => setIsPlaying(!isPlaying)}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fas fa-pause"
+                      onClick={() => setIsPlaying(!isPlaying)}
+                    ></i>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         ))}
