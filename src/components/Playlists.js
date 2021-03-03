@@ -13,14 +13,14 @@ const Playlists = () => {
   console.log(playlistsData);
   return (
     <div className="main--playlist">
-      <div className="browse__header">
+      <div>
         <h1>Your Top Playlist</h1>
       </div>
-      <div className="reco--grid">
+      <div>
         {playlistsData.map((item) => (
           <div className="responsive">
             <div className="gallery">
-              <img src={item.playlistsImg} alt="i1" />
+              <img src={item.playlistsImg} alt="cover" />
               <div className="desc">{item.playlistsName}</div>
               <div className="desc">{item.playlistsTotal}</div>
             </div>

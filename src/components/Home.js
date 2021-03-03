@@ -2,32 +2,66 @@ import { Link } from "react-router-dom";
 import Searchbox from "./Searchbox";
 
 const Home = () => {
+  const toggleMobileNav = () => {
+    var element = document.getElementById("mobile-nav");
+    if (element.classList.contains("mobile-nav__open")) {
+      element.classList.remove("mobile-nav__open");
+    } else {
+      element.classList.add("mobile-nav__open");
+    }
+  };
+
   return (
-    <div className="container">
-      <header>
-        <i className="fas fa-headphones-alt"></i>
-        <h1>Musicfy</h1>
-        <nav className="navigation">
-          <div className="navigation__profile">
-            <img src="" alt="user profile display" />
-            <p>Username</p>
+    <>
+      <div className="mobile-nav" id="mobile-nav">
+        <div className="mobile-nav--header">
+          <h1 className="logo">
+            <i className="fas fa-headphones-alt"></i> Musicfy
+          </h1>
+          <div className="close--btn" onClick={toggleMobileNav}>
+            <button>
+              <i class="fas fa-times"></i>
+            </button>
           </div>
-          <Link to="/home" className="navigation--item">
-            <span>
-              <i className="fas fa-home"></i>
-            </span>{" "}
-            Home
-          </Link>
-          <Link href="/login" className="navigation--item">
+        </div>
+        <a
+          className="mobile-navigation--item navigation--item__active"
+          href="##"
+        >
+          <span>
+            <i className="fas fa-home"></i>
+          </span>
+          home
+        </a>
+      </div>
+      <div className="container">
+        <header>
+          <h1 className="logo">
+            <i className="fas fa-headphones-alt"></i> Musicfy
+          </h1>
+          <nav className="navigation">
+            <a className="navigation--item navigation--item__active" href="##">
+              <span>
+                <i className="fas fa-home"></i>
+              </span>
+              home
+            </a>
+          </nav>
+          <div className="menu-button" onClick={toggleMobileNav}>
+            <button>
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          <Link href="/login">
             <span>
               <i className="fas fa-sign-out-alt"></i>
             </span>{" "}
             Logout
           </Link>
-        </nav>
-      </header>
-      <Searchbox />
-    </div>
+        </header>
+        <Searchbox />
+      </div>
+    </>
   );
 };
 

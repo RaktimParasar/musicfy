@@ -63,6 +63,7 @@ const Searchbox = () => {
         <Playlists />
         <MusicPlayer musicData={musicData} />
       </main>
+      <div>display something</div>
     </>
   );
 };

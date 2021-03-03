@@ -17,7 +17,7 @@ const MusicPlayer = ({ musicData }) => {
     }
   });
   return (
-    <div className="music__card">
+    <div className="main--player">
       <div className="current-song">
         {musicList.map((el) => (
           <div id={el.songID}>
