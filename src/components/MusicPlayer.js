@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import Marquee from "react-fast-marquee";
 
 const MusicPlayer = ({ musicData }) => {
   const audioEl = useRef(null);
@@ -16,39 +17,51 @@ const MusicPlayer = ({ musicData }) => {
       audioEl.current && audioEl.current.pause();
     }
   });
+  console.log(musicList);
   return (
     <div className="main--player">
-      <div className="current-song">
-        {musicList.map((el) => (
-          <div id={el.songID}>
-            <audio src={el.musicUrl} ref={audioEl}></audio>
-            <div className="img-wrap">
-              <img src={el.songImg} alt="cover" />
-            </div>
-            <span className="song-name">{el.songName}</span>
-            <span className="song-autor">{el.artistName}</span>
-            <div className="controls">
-              {el.musicUrl === null ? (
-                <p>Music not avialable to play</p>
-              ) : (
-                <button className="play current-btn">
-                  {!isPlaying ? (
-                    <i
-                      className="fas fa-play"
-                      onClick={() => setIsPlaying(!isPlaying)}
-                    ></i>
-                  ) : (
-                    <i
-                      className="fas fa-pause"
-                      onClick={() => setIsPlaying(!isPlaying)}
-                    ></i>
-                  )}
-                </button>
-              )}
-            </div>
+      {musicList.length === 0 ? (
+        <div className="current-song">
+          <div className="img-wrap">
+            <img
+              src="https://www.bensound.com/bensound-img/slowmotion.jpg"
+              alt="cover"
+            />
           </div>
-        ))}
-      </div>
+          <span className="song-name">Seach a song to play</span>
+        </div>
+      ) : (
+        <div className="current-song">
+          {musicList.map((el) => (
+            <div id={el.songID}>
+              <audio src={el.musicUrl} ref={audioEl}></audio>
+              <div className="img-wrap">
+                <img src={el.songImg} alt="cover" />
+              </div>
+              <div className="current__song--details">
+                <span className="song-name">
+                  <marquee direction="left">
+                    {el.songName.substring(0, 15)}
+                  </marquee>
+                </span>
+                <span className="song-autor">{el.artistName}</span>
+              </div>
+              <div className="controls">
+                {el.musicUrl === null ? (
+                  <p>Music not avialable to play</p>
+                ) : (
+                  <button className="play current-btn">
+                    <i
+                      className={`fas fa-${!isPlaying ? "play" : "pause"}`}
+                      onClick={() => setIsPlaying(!isPlaying)}
+                    ></i>
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
