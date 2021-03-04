@@ -52,7 +52,7 @@ const Home = () => {
               <i class="fas fa-bars"></i>
             </button>
           </div>
-          <Link href="/login">
+          <Link to="/login">
             <span>
               <i className="fas fa-sign-out-alt"></i>
             </span>{" "}

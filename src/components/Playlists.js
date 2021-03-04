@@ -10,19 +10,22 @@ const Playlists = () => {
     };
     playData();
   }, []);
-  console.log(playlistsData);
   return (
     <div className="main--playlist">
-      <div>
-        <h1>Your Top Playlist</h1>
-      </div>
-      <div>
+      <h1>Your Top Playlist</h1>
+      <div className="albums">
         {playlistsData.map((item) => (
-          <div className="responsive">
-            <div className="gallery">
-              <img src={item.playlistsImg} alt="cover" />
-              <div className="desc">{item.playlistsName}</div>
-              <div className="desc">{item.playlistsTotal}</div>
+          <div className="album">
+            <img className="album__cover" src={item.playlistsImg} alt="cover" />
+            <div>
+              <div className="album__desc">
+                {" "}
+                Title: {""}
+                {item.playlistsName.length > 10
+                  ? `${item.playlistsName.substring(0, 10)} ...`
+                  : item.playlistsName}
+              </div>
+              <div className="album__desc">Tracks: {item.playlistsTotal}</div>
             </div>
           </div>
         ))}

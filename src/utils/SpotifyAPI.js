@@ -10,7 +10,7 @@ export const search = async (query) => {
         Authorization: "Bearer " + window.localStorage.getItem("access_token"),
       },
     });
-    const data = await res.data.tracks.items.slice(0, 5);
+    const data = await res.data.tracks.items.slice(0, 6);
     const topFive = data.map((el) => ({
       artistName: el.artists[0].name,
       songName: el.album.name,

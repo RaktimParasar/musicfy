@@ -53,8 +53,8 @@ const Searchbox = () => {
                 >
                   <img className="cover" src={item.songImg} alt="cover" />
                   <p className="artists--name">
-                    {item.artistName.length > 12
-                      ? item.artistName.substring(0, 12) + "..."
+                    {item.artistName.length > 15
+                      ? item.artistName.substring(0, 15) + "..."
                       : item.artistName}
                   </p>
                   <p className="title--left">
