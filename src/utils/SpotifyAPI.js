@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000";
+const url = "http://localhost:5000";
 
 //spotify get search results
 export const search = async (query) => {
@@ -40,6 +40,8 @@ export const playlists = async () => {
       playlistsTotal: el.tracks.total,
     }));
     return fivePlaylists;
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
 playlists();

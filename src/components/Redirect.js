@@ -6,10 +6,10 @@ var arr = phrase.match(/code=(.*)/);
 if (arr != null) {
   var bearer_token = arr[1];
 }
-
+console.log(bearer_token);
 const headers = {
   method: "GET",
-  url: "http://localhost:3000/token",
+  url: "http://localhost:5000/token",
   headers: {
     Authorization: "Bearer " + bearer_token,
   },

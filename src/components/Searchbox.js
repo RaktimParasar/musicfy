@@ -72,7 +72,9 @@ const Searchbox = () => {
         <Playlists />
         <MusicPlayer musicData={musicData} />
       </main>
-      <div>display something</div>
+      <footer>
+        <p>Musicfy, a simple and handy music player.</p>
+      </footer>
     </>
   );
 };

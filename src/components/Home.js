@@ -24,14 +24,8 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <a
-          className="mobile-navigation--item navigation--item__active"
-          href="##"
-        >
-          <span>
-            <i className="fas fa-home"></i>
-          </span>
-          home
+        <a className="mobile-navigation--item" href="##">
+          <i className="fas fa-home"></i> Home
         </a>
       </div>
       <div className="container">
@@ -40,11 +34,8 @@ const Home = () => {
             <i className="fas fa-headphones-alt"></i> Musicfy
           </h1>
           <nav className="navigation">
-            <a className="navigation--item navigation--item__active" href="##">
-              <span>
-                <i className="fas fa-home"></i>
-              </span>
-              home
+            <a className="navigation--item" href="/home">
+              <i className="fas fa-home"></i> Home
             </a>
           </nav>
           <div className="menu-button" onClick={toggleMobileNav}>
@@ -52,11 +43,8 @@ const Home = () => {
               <i class="fas fa-bars"></i>
             </button>
           </div>
-          <Link to="/login">
-            <span>
-              <i className="fas fa-sign-out-alt"></i>
-            </span>{" "}
-            Logout
+          <Link to="/" className="logout">
+            <i className="fas fa-sign-out-alt "></i> Logout
           </Link>
         </header>
         <Searchbox />

@@ -10,6 +10,7 @@ const Playlists = () => {
     };
     playData();
   }, []);
+  console.log(playlistsData);
   return (
     <div className="main--playlist">
       <h1>Your Top Playlist</h1>

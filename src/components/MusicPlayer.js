@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import Marquee from "react-fast-marquee";
 
 const MusicPlayer = ({ musicData }) => {
   const audioEl = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying] = useState(false);
   const [musicList, setMusicList] = useState([]);
 
   useEffect(() => {
@@ -17,6 +16,7 @@ const MusicPlayer = ({ musicData }) => {
       audioEl.current && audioEl.current.pause();
     }
   });
+
   console.log(musicList);
   return (
     <div className="main--player">
@@ -34,7 +34,6 @@ const MusicPlayer = ({ musicData }) => {
         <div className="current-song">
           {musicList.map((el) => (
             <div id={el.songID}>
-              <audio src={el.musicUrl} ref={audioEl}></audio>
               <div className="img-wrap">
                 <img src={el.songImg} alt="cover" />
               </div>
@@ -50,12 +49,7 @@ const MusicPlayer = ({ musicData }) => {
                 {el.musicUrl === null ? (
                   <p>Music not avialable to play</p>
                 ) : (
-                  <button className="play current-btn">
-                    <i
-                      className={`fas fa-${!isPlaying ? "play" : "pause"}`}
-                      onClick={() => setIsPlaying(!isPlaying)}
-                    ></i>
-                  </button>
+                  <audio src={el.musicUrl} ref={audioEl} controls></audio>
                 )}
               </div>
             </div>
