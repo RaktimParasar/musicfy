@@ -1,7 +1,29 @@
+import { useState, useEffect } from "react";
+import { playlists } from "../utils/SpotifyAPI";
 import { Link } from "react-router-dom";
 import Searchbox from "./Searchbox";
+import Loading from "./Loading";
 
 const Home = () => {
+  const [playlistsData, setPlaylistsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const playData = async () => {
+      setPlaylistsData(await playlists());
+      setIsLoading(false);
+    };
+    playData();
+  }, []);
+
+  useEffect(() => {
+    const playData = async () => {
+      setPlaylistsData(await playlists());
+      setIsLoading(false);
+    };
+    playData();
+  }, []);
+
   const toggleMobileNav = () => {
     var element = document.getElementById("mobile-nav");
     if (element.classList.contains("mobile-nav__open")) {
@@ -11,7 +33,11 @@ const Home = () => {
     }
   };
 
-  return (
+  const handlelogout = () => {
+    window.localStorage.removeItem("access_token");
+  };
+
+  return !isLoading ? (
     <>
       <div className="mobile-nav" id="mobile-nav">
         <div className="mobile-nav--header">
@@ -24,7 +50,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <a className="mobile-navigation--item" href="##">
+        <a className="mobile-navigation--item" href="/home">
           <i className="fas fa-home"></i> Home
         </a>
       </div>
@@ -43,13 +69,15 @@ const Home = () => {
               <i class="fas fa-bars"></i>
             </button>
           </div>
-          <Link to="/" className="logout">
+          <Link to="/" className="logout" onClick={handlelogout}>
             <i className="fas fa-sign-out-alt "></i> Logout
           </Link>
         </header>
-        <Searchbox />
+        <Searchbox playlistsData={playlistsData} isLoading={isLoading} />
       </div>
     </>
+  ) : (
+    <Loading />
   );
 };
 

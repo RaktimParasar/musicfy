@@ -17,7 +17,6 @@ const MusicPlayer = ({ musicData }) => {
     }
   });
 
-  console.log(musicList);
   return (
     <div className="main--player">
       {musicList.length === 0 ? (
@@ -39,11 +38,19 @@ const MusicPlayer = ({ musicData }) => {
               </div>
               <div className="current__song--details">
                 <span className="song-name">
-                  <marquee direction="left">
-                    {el.songName.substring(0, 15)}
-                  </marquee>
+                  {el.songName.length > 25 ? (
+                    <marquee direction="left">{el.songName}</marquee>
+                  ) : (
+                    <>{el.songName}</>
+                  )}
                 </span>
-                <span className="song-autor">{el.artistName}</span>
+                <span className="song-autor">
+                  {el.artistName > 25 ? (
+                    <marquee direction="left">{el.artistName}</marquee>
+                  ) : (
+                    <>{el.artistName}</>
+                  )}
+                </span>
               </div>
               <div className="controls">
                 {el.musicUrl === null ? (

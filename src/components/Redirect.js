@@ -20,6 +20,7 @@ const generateAccessToken = () => {
     .request(headers)
     .then(function (response) {
       let access_token = response.data.access_token;
+      window.localStorage.removeItem("access_token");
       window.localStorage.setItem("access_token", access_token);
     })
     .catch(function (error) {

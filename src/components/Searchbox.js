@@ -3,7 +3,7 @@ import { search } from "../utils/SpotifyAPI";
 import Playlists from "./Playlists";
 import MusicPlayer from "./MusicPlayer";
 
-const Searchbox = () => {
+const Searchbox = ({ playlistsData, isLoading }) => {
   const [text, setText] = useState("");
   const [isDown, setIsDown] = useState(false);
   const [dropdown, setDropdown] = useState([]);
@@ -27,6 +27,18 @@ const Searchbox = () => {
     };
     dataID();
   };
+
+  // const handleChange = (e) => {
+  //   e.preventDefault();
+  //   setText(e.target.value);
+  //   search(text);
+  //   const data = async () => {
+  //     setDropdown(await search(text));
+  //     setIsDown(true);
+  //   };
+  //   data();
+  // };
+
   return (
     <>
       <div className="search">
@@ -36,6 +48,7 @@ const Searchbox = () => {
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            // onChange={handleChange}
             placeholder="search your favourite song"
             required
           />
@@ -44,7 +57,6 @@ const Searchbox = () => {
 
         {isDown && text && (
           <div className="search__dropdown">
-            <p className="recent">Recent search</p>
             {dropdown.map((item) => (
               <>
                 <div
@@ -69,7 +81,7 @@ const Searchbox = () => {
         )}
       </div>
       <main>
-        <Playlists />
+        <Playlists playlistsData={playlistsData} isLoading={isLoading} />
         <MusicPlayer musicData={musicData} />
       </main>
       <footer>
