@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { playlists } from "../utils/SpotifyAPI";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Searchbox from "./Searchbox";
 import Loading from "./Loading";
@@ -8,7 +8,6 @@ let history = createBrowserHistory();
 
 const Home = () => {
   const [playlistsData, setPlaylistsData] = useState([]);
-  // const [token, setToken] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
