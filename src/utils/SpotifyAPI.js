@@ -29,7 +29,7 @@ export const playlists = async () => {
   try {
     const res = await axios.get(`${url}/playlists`, {
       headers: {
-        Authorization: "Bearer " + window.localStorage.getItem("access_token"),
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
       },
     });
     console.log(res.data);
