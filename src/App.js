@@ -11,13 +11,14 @@ import Home from "./components/Home";
 
 const checkAuth = () => {
   const token = localStorage.getItem("access_token");
-  console.log("access: " + token);
   if (!token) {
-    console.log("No token");
     return false;
+  } else {
+    return true;
   }
 };
 
+// private route auth
 const AuthRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -27,12 +28,22 @@ const AuthRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+//Public routes auth
+const PublicAuthRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      !checkAuth() ? <Component {...props} /> : <Redirect to={"/home"} />
+    }
+  />
+);
+
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/redirect" component={Generate} />
+        <PublicAuthRoute exact path="/" component={Login} />
+        <PublicAuthRoute exact path="/redirect" component={Generate} />
         <AuthRoute exact path="/home" component={Home} />
       </Switch>
     </Router>
