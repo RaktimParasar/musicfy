@@ -8,6 +8,7 @@ import {
 import Login from "./components/Login";
 import Generate from "./components/Generate";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 
 const checkAuth = () => {
   const token = localStorage.getItem("access_token");
@@ -45,6 +46,7 @@ const App = () => {
         <PublicAuthRoute exact path="/" component={Login} />
         <PublicAuthRoute exact path="/redirect" component={Generate} />
         <AuthRoute exact path="/home" component={Home} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { search } from "../utils/SpotifyAPI";
 import Playlists from "./Playlists";
 import MusicPlayer from "./MusicPlayer";
@@ -9,15 +9,15 @@ const Searchbox = ({ playlistsData, isLoading }) => {
   const [dropdown, setDropdown] = useState([]);
   const [musicData, setMusicData] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    search(text);
-    const data = async () => {
-      setDropdown(await search(text));
-      setIsDown(true);
-    };
-    data();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   search(text);
+  //   const data = async () => {
+  //     setDropdown(await search(text));
+  //     setIsDown(true);
+  //   };
+  //   data();
+  // };
   const handleClick = (id) => {
     const dataID = async () => {
       const res = await search(text);
@@ -28,27 +28,31 @@ const Searchbox = ({ playlistsData, isLoading }) => {
     dataID();
   };
 
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   setText(e.target.value);
-  //   search(text);
+  const handleChange = (e) => {
+    e.preventDefault();
+    setText(e.target.value);
+    search(text);
+    console.log(text);
+  };
+
+  // useEffect(() => {
   //   const data = async () => {
   //     setDropdown(await search(text));
   //     setIsDown(true);
   //   };
   //   data();
-  // };
+  // }, [text]);
 
   return (
     <>
       <div className="search">
-        <form className="search__form" onSubmit={handleSubmit}>
+        <form className="search__form">
           <input
             className="search__box"
             type="text"
             value={text}
-            onChange={(e) => setText(e.target.value)}
-            // onChange={handleChange}
+            // onChange={(e) => setText(e.target.value)}
+            onChange={handleChange}
             placeholder="search your favourite song"
             required
           />
