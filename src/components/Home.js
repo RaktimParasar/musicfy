@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { playlists } from "../utils/SpotifyAPI";
-import { Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Searchbox from "./Searchbox";
 import SkeletonSearch from "../skeletons/SkeletonSearch";
 import SkeletonPlaylist from "../skeletons/SkeletonPlaylist";
+import Navbar from "./Navbar";
 let history = createBrowserHistory();
 
 const Home = () => {
@@ -51,24 +51,7 @@ const Home = () => {
         </a>
       </div>
       <div className="container">
-        <header>
-          <h1 className="logo">
-            <i className="fas fa-headphones-alt"></i> Musicfy
-          </h1>
-          <nav className="navigation">
-            <a className="navigation--item" href="/home">
-              <i className="fas fa-home"></i> Home
-            </a>
-          </nav>
-          <div className="menu-button" onClick={toggleMobileNav}>
-            <button>
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-          <Link to="/" className="logout" onClick={handlelogout}>
-            <i className="fas fa-sign-out-alt "></i> Logout
-          </Link>
-        </header>
+        <Navbar toggleMobileNav={toggleMobileNav} handlelogout={handlelogout} />
         {!isLoading && <Searchbox playlistsData={playlistsData} />}
         {isLoading && (
           <>
