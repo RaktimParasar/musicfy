@@ -2,7 +2,7 @@
 // import { playlists } from "../utils/SpotifyAPI";
 // import Loading from "./Loading";
 
-const Playlists = ({ isLoading, playlistsData }) => {
+const Playlists = ({ playlistsData }) => {
   // const [playlistsData, setPlaylistsData] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
 
@@ -18,31 +18,21 @@ const Playlists = ({ isLoading, playlistsData }) => {
     <div className="main--playlist">
       <h1>Your Top Playlist</h1>
       <div className="albums">
-        {
-          // !isLoading ? (
-          playlistsData.map((item) => (
-            <div className="album">
-              <img
-                className="album__cover"
-                src={item.playlistsImg}
-                alt="cover"
-              />
-              <div>
-                <div className="album__desc">
-                  {" "}
-                  Title: {""}
-                  {item.playlistsName.length > 10
-                    ? `${item.playlistsName.substring(0, 10)} ...`
-                    : item.playlistsName}
-                </div>
-                <div className="album__desc">Tracks: {item.playlistsTotal}</div>
+        {playlistsData.map((item) => (
+          <div className="album">
+            <img className="album__cover" src={item.playlistsImg} alt="cover" />
+            <div>
+              <div className="album__desc">
+                {" "}
+                Title: {""}
+                {item.playlistsName.length > 10
+                  ? `${item.playlistsName.substring(0, 10)} ...`
+                  : item.playlistsName}
               </div>
+              <div className="album__desc">Tracks: {item.playlistsTotal}</div>
             </div>
-          ))
-          // ) : (
-          // <Loading />
-          // )
-        }
+          </div>
+        ))}
       </div>
     </div>
   );

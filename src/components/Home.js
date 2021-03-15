@@ -3,7 +3,8 @@ import { playlists } from "../utils/SpotifyAPI";
 import { Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Searchbox from "./Searchbox";
-import Loading from "./Loading";
+import SkeletonSearch from "../skeletons/SkeletonSearch";
+import SkeletonPlaylist from "../skeletons/SkeletonPlaylist";
 let history = createBrowserHistory();
 
 const Home = () => {
@@ -32,7 +33,7 @@ const Home = () => {
     history.replace("/");
   };
 
-  return !isLoading ? (
+  return (
     <>
       <div className="mobile-nav" id="mobile-nav">
         <div className="mobile-nav--header">
@@ -68,11 +69,17 @@ const Home = () => {
             <i className="fas fa-sign-out-alt "></i> Logout
           </Link>
         </header>
-        <Searchbox playlistsData={playlistsData} isLoading={isLoading} />
+        {!isLoading && <Searchbox playlistsData={playlistsData} />}
+        {isLoading && (
+          <>
+            <SkeletonSearch />
+            {[1, 2, 3, 4, 5].map((n) => (
+              <SkeletonPlaylist key={n} />
+            ))}
+          </>
+        )}
       </div>
     </>
-  ) : (
-    <Loading />
   );
 };
 

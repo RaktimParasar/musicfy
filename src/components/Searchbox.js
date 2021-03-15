@@ -3,7 +3,7 @@ import { search } from "../utils/SpotifyAPI";
 import Playlists from "./Playlists";
 import MusicPlayer from "./MusicPlayer";
 
-const Searchbox = ({ playlistsData, isLoading }) => {
+const Searchbox = ({ playlistsData }) => {
   const [text, setText] = useState("");
   const [isDown, setIsDown] = useState(false);
   const [dropdown, setDropdown] = useState([]);
@@ -33,6 +33,11 @@ const Searchbox = ({ playlistsData, isLoading }) => {
     setText(e.target.value);
     search(text);
     console.log(text);
+    const data = async () => {
+      setDropdown(await search(text));
+      setIsDown(true);
+    };
+    data();
   };
 
   // useEffect(() => {
@@ -42,7 +47,7 @@ const Searchbox = ({ playlistsData, isLoading }) => {
   //   };
   //   data();
   // }, [text]);
-
+  console.log(dropdown);
   return (
     <>
       <div className="search">
@@ -85,7 +90,7 @@ const Searchbox = ({ playlistsData, isLoading }) => {
         )}
       </div>
       <main>
-        <Playlists playlistsData={playlistsData} isLoading={isLoading} />
+        <Playlists playlistsData={playlistsData} />
         <MusicPlayer musicData={musicData} />
       </main>
       <footer>
