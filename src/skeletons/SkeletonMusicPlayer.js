@@ -1,4 +1,5 @@
 import SkeletonElement from "../skeletons/SkeletonElement";
+import Shimmer from "./Shimmer";
 
 const SkeletonMusicPlayer = () => {
   return (
@@ -7,6 +8,7 @@ const SkeletonMusicPlayer = () => {
         <SkeletonElement type="box-small" />
         <SkeletonElement type="title" />
       </div>
+      <Shimmer />
     </div>
   );
 };

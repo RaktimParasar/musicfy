@@ -1,3 +1,4 @@
+import Shimmer from "./Shimmer";
 import SkeletonElement from "./SkeletonElement";
 
 const SkeletonPlaylist = () => {
@@ -10,6 +11,7 @@ const SkeletonPlaylist = () => {
           <SkeletonElement type="text" />
         </div>
       </div>
+      <Shimmer />
     </div>
   );
 };
