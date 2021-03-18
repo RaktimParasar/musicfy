@@ -4,8 +4,6 @@ import { createBrowserHistory } from "history";
 import { search } from "../utils/SpotifyAPI";
 
 // components
-import SkeletonSearch from "../skeletons/SkeletonSearch";
-import SkeletonPlaylist from "../skeletons/SkeletonPlaylist";
 import Navbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import SearchBox from "./SearchBox";
@@ -104,22 +102,15 @@ const Home = () => {
           input={input}
           searchResult={searchResult}
           isDropdown={isDropdown}
+          isLoading={isLoading}
         />
         <main>
-          <Playlists playlistsData={playlistsData} />
-          <MusicPlayer musicData={musicData} />
+          <Playlists playlistsData={playlistsData} isLoading={isLoading} />
+          <MusicPlayer musicData={musicData} isLoading={isLoading} />
         </main>
         <footer>
           <p>Musicfy, a simple and handy music player.</p>
         </footer>
-        {isLoading && (
-          <>
-            <SkeletonSearch />
-            {[1, 2, 3, 4, 5].map((n) => (
-              <SkeletonPlaylist key={n} />
-            ))}
-          </>
-        )}
       </div>
     </>
   );

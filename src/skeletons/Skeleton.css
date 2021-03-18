@@ -6,7 +6,7 @@
 
 .skeleton.text {
   width: 100%;
-  height: 12px;
+  height: 15px;
 }
 
 .skeleton.title {
@@ -21,17 +21,16 @@
 }
 
 .skeleton.box-small {
-  width: 400px;
-  height: 50px;
+  width: 70%;
+  height: 200px;
 }
 
 .skeleton.box-big {
-  width: 10px;
-  height: 10px;
+  width: 100%;
+  height: 100px;
 }
 
 .skeleton-wrapper {
-  /* margin: 20px auto; */
   padding: 10px;
   position: relative;
   overflow: hidden;
@@ -46,7 +45,14 @@
 
 .skeleton-playlist {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 150px 1fr;
+  grid-gap: 10px;
   align-items: center;
+}
+
+.skeleton-music {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  margin-top: 80px;
 }
