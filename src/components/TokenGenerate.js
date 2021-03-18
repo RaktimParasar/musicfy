@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Loading from "../components/Loading";
+import Loading from "./Loading";
 
-const Generate = () => {
+const TokenGenerate = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   let history = useHistory();
@@ -40,8 +40,9 @@ const Generate = () => {
   return (
     <div className="login__container">
       <div>{isLoading ? <Loading /> : ""}</div>
+      <p>Generating access token</p>
     </div>
   );
 };
 
-export default Generate;
+export default TokenGenerate;

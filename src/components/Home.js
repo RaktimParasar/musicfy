@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
 import { playlists } from "../utils/SpotifyAPI";
 import { createBrowserHistory } from "history";
-import Searchbox from "./Searchbox";
+import { search } from "../utils/SpotifyAPI";
+
+// components
 import SkeletonSearch from "../skeletons/SkeletonSearch";
 import SkeletonPlaylist from "../skeletons/SkeletonPlaylist";
 import Navbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
+import SearchBox from "./SearchBox";
+import Playlists from "./Playlists";
+import MusicPlayer from "./MusicPlayer";
 let history = createBrowserHistory();
 
 const Home = () => {
   const [playlistsData, setPlaylistsData] = useState([]);
+  const [input, setInput] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [musicData, setMusicData] = useState([]);
+  const [isDropdown, setIsDropDown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  //fetching playlists
   useEffect(() => {
     const playData = async () => {
       setPlaylistsData(await playlists());
@@ -20,6 +30,7 @@ const Home = () => {
     playData();
   }, []);
 
+  //mobile navbar toggle
   const toggleMobileNav = () => {
     var element = document.getElementById("mobile-nav");
     if (element.classList.contains("mobile-nav__open")) {
@@ -29,9 +40,56 @@ const Home = () => {
     }
   };
 
+  //navbar logout func
   const handlelogout = () => {
     window.localStorage.removeItem("access_token");
     history.replace("/");
+  };
+
+  //set search query
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  //searchbox submit btn
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search(input);
+    const data = async () => {
+      setSearchResult(await search(input));
+      setIsDropDown(true);
+    };
+    data();
+  };
+
+  //searchbox auto search
+  // const handleChange = (e) => {
+  //   e.preventDefault();
+  //   setInput(e.target.value);
+  //   search(input);
+  //   const data = async () => {
+  //     setSearchResult(await search(input));
+  //     setIsDropDown(true);
+  //   };
+  //   data();
+  // };
+  // useEffect(() => {
+  //   const data = async () => {
+  //     setDropdown(await search(text));
+  //     setIsDown(true);
+  //   };
+  //   data();
+  // }, [text]);
+
+  //search dropdown select song
+  const handleClick = (id) => {
+    const dataID = async () => {
+      const res = await search(input);
+      const newRes = res.filter((el) => el.songID === id);
+      setMusicData(newRes);
+      setIsDropDown(false);
+    };
+    dataID();
   };
 
   return (
@@ -39,7 +97,21 @@ const Home = () => {
       <MobileNavbar toggleMobileNav={toggleMobileNav} />
       <div className="container">
         <Navbar toggleMobileNav={toggleMobileNav} handlelogout={handlelogout} />
-        {!isLoading && <Searchbox playlistsData={playlistsData} />}
+        <SearchBox
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleClick={handleClick}
+          input={input}
+          searchResult={searchResult}
+          isDropdown={isDropdown}
+        />
+        <main>
+          <Playlists playlistsData={playlistsData} />
+          <MusicPlayer musicData={musicData} />
+        </main>
+        <footer>
+          <p>Musicfy, a simple and handy music player.</p>
+        </footer>
         {isLoading && (
           <>
             <SkeletonSearch />

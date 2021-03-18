@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Login from "./components/Login";
-import Generate from "./components/Generate";
+import TokenGenerate from "./components/TokenGenerate";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 
@@ -44,7 +44,7 @@ const App = () => {
     <Router>
       <Switch>
         <PublicAuthRoute exact path="/" component={Login} />
-        <PublicAuthRoute exact path="/redirect" component={Generate} />
+        <PublicAuthRoute exact path="/redirect" component={TokenGenerate} />
         <AuthRoute exact path="/home" component={Home} />
         <Route component={NotFound} />
       </Switch>
