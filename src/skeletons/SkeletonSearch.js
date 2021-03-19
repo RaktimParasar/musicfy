@@ -6,7 +6,6 @@ const SkeletonSearch = () => {
     <div className="skeleton-wrapper">
       <div className="skeleton-search">
         <SkeletonElement type="box-long" />
-        <SkeletonElement type="box-mini" />
       </div>
       <Shimmer />
     </div>

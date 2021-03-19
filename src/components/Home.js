@@ -44,26 +44,9 @@ const Home = () => {
     history.replace("/");
   };
 
-  //set search query
-  const handleChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  //searchbox submit btn
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    search(input);
-    const data = async () => {
-      setSearchResult(await search(input));
-      setIsDropDown(true);
-    };
-    data();
-  };
-
-  //searchbox auto search
-  // const handleChange = (e) => {
+  // //searchbox submit btn
+  // const handleSubmit = (e) => {
   //   e.preventDefault();
-  //   setInput(e.target.value);
   //   search(input);
   //   const data = async () => {
   //     setSearchResult(await search(input));
@@ -71,13 +54,18 @@ const Home = () => {
   //   };
   //   data();
   // };
-  // useEffect(() => {
-  //   const data = async () => {
-  //     setDropdown(await search(text));
-  //     setIsDown(true);
-  //   };
-  //   data();
-  // }, [text]);
+
+  // searchbox auto search
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+    search(input);
+    const data = async () => {
+      input && setSearchResult(await search(input));
+      input && setIsDropDown(true);
+    };
+    data();
+  };
 
   //search dropdown select song
   const handleClick = (id) => {
@@ -97,7 +85,6 @@ const Home = () => {
         <Navbar toggleMobileNav={toggleMobileNav} handlelogout={handlelogout} />
         <SearchBox
           handleChange={handleChange}
-          handleSubmit={handleSubmit}
           handleClick={handleClick}
           input={input}
           searchResult={searchResult}

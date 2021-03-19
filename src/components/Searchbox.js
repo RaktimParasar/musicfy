@@ -13,17 +13,15 @@ const Searchbox = ({
     <div className="search">
       {!isLoading && (
         <>
-          <form className="search__form" onSubmit={handleSubmit}>
+          <form className="search__form">
             <input
               className="search__box"
               type="text"
               value={input}
               onChange={handleChange}
-              //   onChange={handleChange}
               placeholder="search your favourite song"
               required
             />
-            <input type="submit" value="Search" className="search__btn" />
           </form>
 
           {isDropdown && input && (

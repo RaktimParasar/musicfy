@@ -20,7 +20,7 @@ export const search = async (query) => {
     }));
     return topFive;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
