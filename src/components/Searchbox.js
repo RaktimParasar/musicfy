@@ -3,11 +3,11 @@ import SkeletonSearch from "../skeletons/SkeletonSearch";
 const Searchbox = ({
   input,
   handleChange,
-  handleSubmit,
   searchResult,
   isDropdown,
   handleClick,
   isLoading,
+  searchLoader,
 }) => {
   return (
     <div className="search">
@@ -26,26 +26,28 @@ const Searchbox = ({
 
           {isDropdown && input && (
             <div className="search__dropdown">
-              {searchResult.map((item) => (
-                <>
-                  <div
-                    className="dropdown__container"
-                    onClick={() => handleClick(item.songID)}
-                  >
-                    <img className="cover" src={item.songImg} alt="cover" />
-                    <p className="artists--name">
-                      {item.artistName.length > 15
-                        ? item.artistName.substring(0, 15) + "..."
-                        : item.artistName}
-                    </p>
-                    <p className="title--left">
-                      {item.songName.length > 20
-                        ? item.songName.substring(0, 20) + "..."
-                        : item.songName}
-                    </p>
-                  </div>
-                </>
-              ))}
+              {!searchLoader &&
+                searchResult.map((item) => (
+                  <>
+                    <div
+                      className="dropdown__container"
+                      onClick={() => handleClick(item.songID)}
+                    >
+                      <img className="cover" src={item.songImg} alt="cover" />
+                      <p className="artists--name">
+                        {item.artistName.length > 15
+                          ? item.artistName.substring(0, 15) + "..."
+                          : item.artistName}
+                      </p>
+                      <p className="title--left">
+                        {item.songName.length > 20
+                          ? item.songName.substring(0, 20) + "..."
+                          : item.songName}
+                      </p>
+                    </div>
+                  </>
+                ))}
+              {searchLoader && <p>loading...</p>}
             </div>
           )}
         </>

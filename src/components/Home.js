@@ -18,6 +18,7 @@ const Home = () => {
   const [musicData, setMusicData] = useState([]);
   const [isDropdown, setIsDropDown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchLoader, setSearchLoader] = useState(true);
 
   //fetching playlists
   useEffect(() => {
@@ -44,17 +45,6 @@ const Home = () => {
     history.replace("/");
   };
 
-  // //searchbox submit btn
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   search(input);
-  //   const data = async () => {
-  //     setSearchResult(await search(input));
-  //     setIsDropDown(true);
-  //   };
-  //   data();
-  // };
-
   // searchbox auto search
   const handleChange = (e) => {
     e.preventDefault();
@@ -64,6 +54,7 @@ const Home = () => {
       input && setSearchResult(await search(input));
       input && setIsDropDown(true);
     };
+    setSearchLoader(false);
     data();
   };
 
@@ -90,6 +81,7 @@ const Home = () => {
           searchResult={searchResult}
           isDropdown={isDropdown}
           isLoading={isLoading}
+          searchLoader={searchLoader}
         />
         <main>
           <Playlists playlistsData={playlistsData} isLoading={isLoading} />

@@ -454,6 +454,20 @@ footer {
   }
 }
 
+/* not found page */
+.back__btn {
+  background: #1ed760;
+  color: white;
+  padding: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
   main {
     display: block;
