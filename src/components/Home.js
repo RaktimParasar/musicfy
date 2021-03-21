@@ -50,13 +50,16 @@ const Home = () => {
     e.preventDefault();
     setInput(e.target.value);
     search(input);
+  };
+
+  useEffect(() => {
     const data = async () => {
       input && setSearchResult(await search(input));
       input && setIsDropDown(true);
+      setSearchLoader(false);
     };
-    setSearchLoader(false);
     data();
-  };
+  }, [input]);
 
   //search dropdown select song
   const handleClick = (id) => {
