@@ -18,7 +18,7 @@ const Home = () => {
   const [musicData, setMusicData] = useState([]);
   const [isDropdown, setIsDropDown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchLoader, setSearchLoader] = useState(true);
+  const [searchLoader, setSearchLoader] = useState(false);
 
   //fetching playlists
   useEffect(() => {
@@ -50,13 +50,14 @@ const Home = () => {
     e.preventDefault();
     setInput(e.target.value);
     search(input);
+    setSearchLoader(true);
   };
 
   useEffect(() => {
     const data = async () => {
       input && setSearchResult(await search(input));
-      input && setIsDropDown(true);
       setSearchLoader(false);
+      input && setIsDropDown(true);
     };
     data();
   }, [input]);

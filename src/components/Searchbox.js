@@ -1,4 +1,5 @@
 import SkeletonSearch from "../skeletons/SkeletonSearch";
+import Loading2 from "../components/Loading2";
 
 const Searchbox = ({
   input,
@@ -23,31 +24,29 @@ const Searchbox = ({
               required
             />
           </form>
-
-          {isDropdown && input && (
+          <div className="loading2">{searchLoader ? <Loading2 /> : ""}</div>
+          {!searchLoader && isDropdown && input && (
             <div className="search__dropdown">
-              {!searchLoader &&
-                searchResult.map((item) => (
-                  <>
-                    <div
-                      className="dropdown__container"
-                      onClick={() => handleClick(item.songID)}
-                    >
-                      <img className="cover" src={item.songImg} alt="cover" />
-                      <p className="artists--name">
-                        {item.artistName.length > 15
-                          ? item.artistName.substring(0, 15) + "..."
-                          : item.artistName}
-                      </p>
-                      <p className="title--left">
-                        {item.songName.length > 20
-                          ? item.songName.substring(0, 20) + "..."
-                          : item.songName}
-                      </p>
-                    </div>
-                  </>
-                ))}
-              {searchLoader && <p>loading...</p>}
+              {searchResult.map((item) => (
+                <>
+                  <div
+                    className="dropdown__container"
+                    onClick={() => handleClick(item.songID)}
+                  >
+                    <img className="cover" src={item.songImg} alt="cover" />
+                    <p className="artists--name">
+                      {item.artistName.length > 15
+                        ? item.artistName.substring(0, 15) + "..."
+                        : item.artistName}
+                    </p>
+                    <p className="title--left">
+                      {item.songName.length > 20
+                        ? item.songName.substring(0, 20) + "..."
+                        : item.songName}
+                    </p>
+                  </div>
+                </>
+              ))}
             </div>
           )}
         </>
